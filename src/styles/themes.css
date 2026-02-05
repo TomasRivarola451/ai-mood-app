@@ -1,0 +1,20 @@
+[data-theme="happy"] {
+    --bg-color: #0f172a;
+    --accent-color: #22c55e;
+  }
+  
+  [data-theme="sad"] {
+    --bg-color: #020617;
+    --accent-color: #38bdf8;
+  }
+  
+  [data-theme="chill"] {
+    --bg-color: #020617;
+    --accent-color: #a78bfa;
+  }
+  
+  [data-theme="energetic"] {
+    --bg-color: #180000;
+    --accent-color: #ef4444;
+  }
+  
