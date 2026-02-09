@@ -1,7 +1,4 @@
-const API_URL =
-  import.meta.env.MODE === "development"
-    ? "https://ai-mood-app-three.vercel.app/api/chat"
-    : "/api/chat";
+const API_URL = "https://ai-mood-app-three.vercel.app/api/chat";
 
 export async function getMoodFromText(text) {
   try {
@@ -20,7 +17,7 @@ export async function getMoodFromText(text) {
     const data = await res.json();
     return data.mood || "unknown";
   } catch (error) {
-    console.error(error);
+    console.error("getMoodFromText error:", error);
     return "unknown";
   }
 }

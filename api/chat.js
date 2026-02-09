@@ -95,10 +95,12 @@ Rules:
       : "confused";
 
     return res.status(200).json({ mood });
-  } catch (error) {
-    console.error("OpenAI API error:", error);
+  }catch (error) {
+    console.error("🔥 OPENAI ERROR:", error);
+  
     return res.status(500).json({
-      error: "No se pudo interpretar el estado de ánimo 😕",
+      error: error.message || "OpenAI error",
     });
   }
+  
 }
