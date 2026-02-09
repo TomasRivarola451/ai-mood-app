@@ -11,12 +11,17 @@ function App() {
   async function handleSubmit(text) {
     setLoading(true);
     setError(null);
+    setCurrentMood(null);
 
     try {
-      const mood = await getMoodFromText(text);
-      setCurrentMood(mood);
+      const result = await getMoodFromText(text);
+      console.log("[App] Result from API, state to render:", { mood: result.mood, error: result.error });
+
+      setCurrentMood(result.mood);
+      setError(result.error);
     } catch (err) {
-      setError("No se pudo interpretar el estado de ánimo");
+      console.error("[App] handleSubmit error:", err);
+      setError("No se pudo interpretar el estado de ánimo 😕");
     } finally {
       setLoading(false);
     }
@@ -27,9 +32,8 @@ function App() {
       <MoodInput onSubmit={handleSubmit} />
 
       {loading && <p>Analizando estado de ánimo...</p>}
-      {error && <p>{error}</p>}
 
-      <MoodResult mood={currentMood} />
+      <MoodResult mood={currentMood} error={error} />
     </>
   );
 }
