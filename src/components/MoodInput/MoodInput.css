@@ -1,2 +1,62 @@
 /* MoodInput styles */
 
+.mood-input {
+  margin: 32px auto 0;
+  max-width: 640px;
+  padding: 24px 20px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.mood-input h1 {
+  margin: 0 0 8px;
+}
+
+.mood-input-subtitle {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.mood-input-form {
+  display: flex;
+  gap: 8px;
+}
+
+.mood-input-form input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.35);
+  color: inherit;
+}
+
+.mood-input-form input::placeholder {
+  opacity: 0.7;
+}
+
+.mood-input-form button {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--accent-color);
+  color: #111;
+  white-space: nowrap;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+}
+
+.mood-input-form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.mood-input-form button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+

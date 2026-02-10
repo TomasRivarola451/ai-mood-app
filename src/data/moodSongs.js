@@ -1,23 +1,122 @@
 export const moodSongs = {
-    happy: [
+  happy: {
+    emoji: "😊",
+    label: "contento",
+    title: "Energía positiva al máximo",
+    description: "Subí el volumen y dejate llevar por el buen ánimo.",
+    quote: "Aprovechá este momento. Guardate este mood para los días grises.",
+    songs: [
       { title: "Happy", artist: "Pharrell Williams" },
       { title: "Good as Hell", artist: "Lizzo" },
-      { title: "Can't Stop the Feeling", artist: "Justin Timberlake" }
-    ],
-    sad: [
+      { title: "Can't Stop the Feeling!", artist: "Justin Timberlake" },
+      { title: "Uptown Funk", artist: "Mark Ronson ft. Bruno Mars" },
+      { title: "Walking on Sunshine", artist: "Katrina & The Waves" },
+      { title: "Blinding Lights", artist: "The Weeknd" },
+      { title: "Good Life", artist: "OneRepublic" },
+      { title: "Best Day of My Life", artist: "American Authors" },
+      { title: "Shut Up and Dance", artist: "WALK THE MOON" },
+      { title: "Shake It Off", artist: "Taylor Swift" },
+      { title: "On Top of the World", artist: "Imagine Dragons" },
+      { title: "Feel Good Inc.", artist: "Gorillaz" },
+      { title: "I Gotta Feeling", artist: "Black Eyed Peas" },
+      { title: "Levitating", artist: "Dua Lipa" },
+      { title: "Sugar", artist: "Maroon 5" }
+    ]
+  },
+  sad: {
+    emoji: "😔",
+    label: "bajón",
+    title: "Para días grises",
+    description: "Canciones para acompañarte y levantar de a poco.",
+    quote: "No pasa nada por sentirte así. Tomate tu tiempo.",
+    songs: [
       { title: "Someone Like You", artist: "Adele" },
       { title: "Fix You", artist: "Coldplay" },
-      { title: "The Night We Met", artist: "Lord Huron" }
-    ],
-    chill: [
+      { title: "The Night We Met", artist: "Lord Huron" },
+      { title: "All I Want", artist: "Kodaline" },
+      { title: "Skinny Love", artist: "Bon Iver" },
+      { title: "When the Party's Over", artist: "Billie Eilish" },
+      { title: "Creep (Acoustic)", artist: "Radiohead" },
+      { title: "River", artist: "Leon Bridges" },
+      { title: "Let Her Go", artist: "Passenger" },
+      { title: "The Scientist", artist: "Coldplay" },
+      { title: "Jealous", artist: "Labrinth" },
+      { title: "Liability", artist: "Lorde" },
+      { title: "I Can't Make You Love Me", artist: "Bonnie Raitt" },
+      { title: "Un Año Más", artist: "La Oreja de Van Gogh" },
+      { title: "Te Extraño", artist: "Xtreme" }
+    ]
+  },
+  chill: {
+    emoji: "😌",
+    label: "tranqui",
+    title: "Para relajar la mente",
+    description: "Sonidos suaves para bajar revoluciones y respirar profundo.",
+    quote: "Respirá hondo. Estás acá, ahora.",
+    songs: [
       { title: "Sunset Lover", artist: "Petit Biscuit" },
       { title: "Pink + White", artist: "Frank Ocean" },
-      { title: "Location", artist: "Khalid" }
-    ],
-    energetic: [
-      { title: "Stronger", artist: "Kanye West" },
-      { title: "Titanium", artist: "David Guetta" },
-      { title: "Don't Stop Me Now", artist: "Queen" }
+      { title: "Location", artist: "Khalid" },
+      { title: "Lost in Japan", artist: "Shawn Mendes" },
+      { title: "Coffee", artist: "beabadoobee" },
+      { title: "Stay Ready", artist: "Jhene Aiko ft. Kendrick Lamar" },
+      { title: "Night Owl", artist: "Galimatias" },
+      { title: "3 Nights", artist: "Dominic Fike" },
+      { title: "Borderline", artist: "Tame Impala" },
+      { title: "Get You", artist: "Daniel Caesar" },
+      { title: "Redbone", artist: "Childish Gambino" },
+      { title: "Ocean Eyes", artist: "Billie Eilish" },
+      { title: "Sunflower", artist: "Post Malone, Swae Lee" },
+      { title: "Come Through and Chill", artist: "Miguel" },
+      { title: "Good News", artist: "Mac Miller" }
     ]
-  };
-  
+  },
+  energetic: {
+    emoji: "🔥",
+    label: "a full",
+    title: "Para activarte al 100%",
+    description: "Temas que te empujan a moverte, entrenar o arrancar el día.",
+    quote: "Poné play y dejá que el cuerpo haga el resto.",
+    songs: [
+      { title: "Stronger", artist: "Kanye West" },
+      { title: "Titanium", artist: "David Guetta ft. Sia" },
+      { title: "Don't Stop Me Now", artist: "Queen" },
+      { title: "POWER", artist: "Kanye West" },
+      { title: "Can't Hold Us", artist: "Macklemore & Ryan Lewis" },
+      { title: "Lose Yourself", artist: "Eminem" },
+      { title: "Remember the Name", artist: "Fort Minor" },
+      { title: "Eye of the Tiger", artist: "Survivor" },
+      { title: "Dance Monkey", artist: "Tones and I" },
+      { title: "Thunderstruck", artist: "AC/DC" },
+      { title: "Turn Down for What", artist: "DJ Snake, Lil Jon" },
+      { title: "Rain On Me", artist: "Lady Gaga, Ariana Grande" },
+      { title: "Can't Stop", artist: "Red Hot Chili Peppers" },
+      { title: "Rock Your Body", artist: "Justin Timberlake" },
+      { title: "Tusa", artist: "Karol G, Nicki Minaj" }
+    ]
+  },
+  tired: {
+    emoji: "🥱",
+    label: "agotado",
+    title: "Para descansar la cabeza",
+    description: "Música suave para cerrar el día y soltar tensiones.",
+    quote: "Está bien frenar. No tenés que poder con todo hoy.",
+    songs: [
+      { title: "Holocene", artist: "Bon Iver" },
+      { title: "Slow Dancing in the Dark", artist: "Joji" },
+      { title: "Like Real People Do", artist: "Hozier" },
+      { title: "Cherry Wine (Live)", artist: "Hozier" },
+      { title: "Bloom", artist: "The Paper Kites" },
+      { title: "Work Song", artist: "Hozier" },
+      { title: "Breathe Me", artist: "Sia" },
+      { title: "Motion Picture Soundtrack", artist: "Radiohead" },
+      { title: "Turning Page", artist: "Sleeping At Last" },
+      { title: "Sea of Love", artist: "Cat Power" },
+      { title: "Fourth of July", artist: "Sufjan Stevens" },
+      { title: "Liability (Reprise)", artist: "Lorde" },
+      { title: "Saturn", artist: "Sleeping At Last" },
+      { title: "Cherry", artist: "Lana Del Rey" },
+      { title: "The Stable Song", artist: "Gregory Alan Isakov" }
+    ]
+  }
+};
