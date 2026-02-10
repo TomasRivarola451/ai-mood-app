@@ -1,17 +1,18 @@
 /* MoodInput styles */
 
 .mood-input {
-  margin: 32px auto 0;
-  max-width: 640px;
-  padding: 24px 20px;
+  margin: 16px auto 0;
+  padding: 20px 18px 22px;
   border-radius: 16px;
-  background: rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(16px);
+  text-align: left;
 }
 
 .mood-input h1 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 
 .mood-input-subtitle {
@@ -29,13 +30,24 @@
   flex: 1;
   padding: 10px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.7);
   color: inherit;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
 }
 
 .mood-input-form input::placeholder {
   opacity: 0.7;
+}
+
+.mood-input-form input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 1px var(--accent-color);
+  background: rgba(15, 23, 42, 0.9);
 }
 
 .mood-input-form button {
@@ -45,7 +57,7 @@
   font-weight: 600;
   cursor: pointer;
   background: var(--accent-color);
-  color: #111;
+  color: #111827;
   white-space: nowrap;
   transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
 }
@@ -58,5 +70,19 @@
 .mood-input-form button:active {
   transform: translateY(0);
   box-shadow: none;
+}
+
+@media (max-width: 640px) {
+  .mood-input {
+    padding: 18px 14px 20px;
+  }
+
+  .mood-input-form {
+    flex-direction: column;
+  }
+
+  .mood-input-form button {
+    width: 100%;
+  }
 }
 

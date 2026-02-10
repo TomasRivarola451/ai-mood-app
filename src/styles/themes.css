@@ -1,20 +1,62 @@
+[data-theme="neutral"] {
+  --bg-color: #020617;
+  --bg-gradient: radial-gradient(circle at top, #1f2933 0%, #020617 55%, #020617 100%);
+  --primary-color: #e5e7eb;
+  --secondary-color: #9ca3af;
+  --accent-color: #38bdf8;
+  --text-color: #f9fafb;
+}
+
 [data-theme="happy"] {
-    --bg-color: #0f172a;
-    --accent-color: #22c55e;
-  }
-  
-  [data-theme="sad"] {
-    --bg-color: #020617;
-    --accent-color: #38bdf8;
-  }
-  
-  [data-theme="chill"] {
-    --bg-color: #020617;
-    --accent-color: #a78bfa;
-  }
-  
-  [data-theme="energetic"] {
-    --bg-color: #180000;
-    --accent-color: #ef4444;
-  }
-  
+  --bg-color: #020617;
+  --bg-gradient: radial-gradient(circle at top, #22c55e33 0%, #0f172a 45%, #020617 100%);
+  --primary-color: #f9fafb;
+  --secondary-color: #bbf7d0;
+  --accent-color: #22c55e;
+  --text-color: #f9fafb;
+}
+
+[data-theme="sad"] {
+  --bg-color: #020617;
+  --bg-gradient: radial-gradient(circle at top, #0ea5e933 0%, #020617 50%, #020617 100%);
+  --primary-color: #e5e7eb;
+  --secondary-color: #94a3b8;
+  --accent-color: #38bdf8;
+  --text-color: #e2e8f0;
+}
+
+[data-theme="chill"] {
+  --bg-color: #020617;
+  --bg-gradient: radial-gradient(circle at top, #8b5cf633 0%, #020617 50%, #020617 100%);
+  --primary-color: #e5e7eb;
+  --secondary-color: #a5b4fc;
+  --accent-color: #a78bfa;
+  --text-color: #e5e7eb;
+}
+
+[data-theme="energetic"] {
+  --bg-color: #020617;
+  --bg-gradient: radial-gradient(circle at top, #f9731633 0%, #111827 40%, #020617 100%);
+  --primary-color: #fefce8;
+  --secondary-color: #fed7aa;
+  --accent-color: #f97316;
+  --text-color: #f9fafb;
+}
+
+[data-theme="tired"] {
+  --bg-color: #020617;
+  --bg-gradient: radial-gradient(circle at top, #4b556333 0%, #020617 50%, #020617 100%);
+  --primary-color: #e5e7eb;
+  --secondary-color: #9ca3af;
+  --accent-color: #64748b;
+  --text-color: #e5e7eb;
+}
+
+[data-theme="angry"] {
+  --bg-color: #020617;
+  --bg-gradient: radial-gradient(circle at top, #ef444433 0%, #111827 40%, #020617 100%);
+  --primary-color: #fee2e2;
+  --secondary-color: #fecaca;
+  --accent-color: #f97373;
+  --text-color: #fef2f2;
+}

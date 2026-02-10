@@ -21,14 +21,13 @@ function MoodInput({ onSubmit }) {
     <section className="mood-input">
       <h1>¿Cómo te sentís hoy?</h1>
       <p className="mood-input-subtitle">
-        Escribí una frase corta y te recomendamos música según tu estado de
-        ánimo.
+        Escribí cómo te sentís hoy y te recomendamos música para acompañarte.
       </p>
 
       <form onSubmit={handleSubmit} className="mood-input-form">
         <input
           type="text"
-          placeholder="Ej: estoy triste, necesito energía para entrenar..."
+          placeholder="Escribí algo como: 'me siento solo últimamente' o 'tengo mucha energía y ganas de hacer cosas'"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />

@@ -71,13 +71,12 @@ function MoodResult({ mood, variant, reason, message, error }) {
       {moodData ? (
         <div className="mood-header">
           <div className="mood-heading">
-            <span className="mood-emoji">{moodData.emoji}</span>
             <div className="mood-heading-text">
+              <h2>{moodData.title}</h2>
               <p className="mood-main-line">
-                {moodData.emoji} Parece que estás {moodData.label}
+                Parece que estás {moodData.label}
                 {variant ? ` (${variant})` : ""}
               </p>
-              <h2>{moodData.title}</h2>
             </div>
           </div>
 
@@ -85,7 +84,7 @@ function MoodResult({ mood, variant, reason, message, error }) {
 
           {reason && (
             <p className="mood-reason">
-              Motivo: {reason}
+              {reason}
             </p>
           )}
 
@@ -119,7 +118,7 @@ function MoodResult({ mood, variant, reason, message, error }) {
             className="another-recommendation"
             onClick={handleAnotherRecommendation}
           >
-            🔁 Otra recomendación
+            Otra recomendación
           </button>
         </>
       ) : (
