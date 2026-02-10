@@ -95,6 +95,54 @@ export const moodSongs = {
       { title: "Tusa", artist: "Karol G, Nicki Minaj" }
     ]
   },
+  angry: {
+    emoji: "😡",
+    label: "con bronca",
+    title: "Para soltar la bronca",
+    description: "Temas intensos para descargar energía sin guardarte nada.",
+    quote: "Sentir enojo también es humano. Lo importante es cómo lo soltás.",
+    songs: [
+      { title: "Killing in the Name", artist: "Rage Against The Machine" },
+      { title: "Smells Like Teen Spirit", artist: "Nirvana" },
+      { title: "Break Stuff", artist: "Limp Bizkit" },
+      { title: "Chop Suey!", artist: "System Of A Down" },
+      { title: "Duality", artist: "Slipknot" },
+      { title: "Given Up", artist: "Linkin Park" },
+      { title: "Feeling This", artist: "blink-182" },
+      { title: "Misery Business", artist: "Paramore" },
+      { title: "American Idiot", artist: "Green Day" },
+      { title: "Bodies", artist: "Drowning Pool" },
+      { title: "The Pretender", artist: "Foo Fighters" },
+      { title: "Welcome to the Jungle", artist: "Guns N' Roses" },
+      { title: "Freak on a Leash", artist: "Korn" },
+      { title: "Down with the Sickness", artist: "Disturbed" },
+      { title: "One Step Closer", artist: "Linkin Park" }
+    ]
+  },
+  neutral: {
+    emoji: "😶",
+    label: "neutro",
+    title: "Para acompañar el momento",
+    description: "Música tranquila para esos días que no son ni muy arriba ni muy abajo.",
+    quote: "No todos los días tienen que ser épicos. A veces, solo está bien estar.",
+    songs: [
+      { title: "Put It All On Me", artist: "Ed Sheeran ft. Ella Mai" },
+      { title: "Budapest", artist: "George Ezra" },
+      { title: "Riptide", artist: "Vance Joy" },
+      { title: "Better Together", artist: "Jack Johnson" },
+      { title: "Holocene", artist: "Bon Iver" },
+      { title: "Skinny Love", artist: "Bon Iver" },
+      { title: "Slow Dancing in a Burning Room", artist: "John Mayer" },
+      { title: "Heartbeats", artist: "José González" },
+      { title: "Come Away with Me", artist: "Norah Jones" },
+      { title: "Home", artist: "Edward Sharpe & The Magnetic Zeros" },
+      { title: "Banana Pancakes", artist: "Jack Johnson" },
+      { title: "Holocene", artist: "Bon Iver" },
+      { title: "Let It Go", artist: "James Bay" },
+      { title: "Yellow", artist: "Coldplay" },
+      { title: "Gravity", artist: "John Mayer" }
+    ]
+  },
   tired: {
     emoji: "🥱",
     label: "agotado",

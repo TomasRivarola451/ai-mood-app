@@ -25,6 +25,9 @@ export async function getMoodFromText(text) {
 
     const result = {
       mood: data.mood ?? null,
+      variant: data.variant ?? null,
+      reason: data.reason ?? null,
+      message: data.message ?? null,
       error: data.error ?? null,
     };
 

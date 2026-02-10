@@ -39,6 +39,18 @@
   opacity: 0.9;
 }
 
+.mood-message {
+  margin: 4px 0 4px;
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.mood-reason {
+  margin: 0 0 8px;
+  font-size: 0.86rem;
+  opacity: 0.8;
+}
+
 .mood-quote {
   margin: 0;
   font-size: 0.9rem;

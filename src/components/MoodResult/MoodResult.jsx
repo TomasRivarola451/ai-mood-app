@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { moodSongs } from "../../data/moodSongs";
+import { normalizeMood } from "../../services/moodAI";
 import "./MoodResult.css";
 
 function getRandomSongs(songs, count) {
@@ -14,17 +15,20 @@ function getRandomSongs(songs, count) {
   return copy.slice(0, Math.min(count, copy.length));
 }
 
-function MoodResult({ mood, error }) {
+function MoodResult({ mood, variant, reason, message, error }) {
   const [seed, setSeed] = useState(0);
 
-  const moodData = mood ? moodSongs[mood] || null : null;
+  const hasApiMood = Boolean(mood);
+  const normalizedMood = hasApiMood ? normalizeMood(mood) : null;
+  const moodData =
+    hasApiMood && normalizedMood ? moodSongs[normalizedMood] || null : null;
 
   useEffect(() => {
     // Cada vez que cambia el mood desde el backend, generamos una nueva playlist
-    if (mood) {
+    if (hasApiMood) {
       setSeed((prev) => prev + 1);
     }
-  }, [mood]);
+  }, [hasApiMood, normalizedMood]);
 
   const songs = useMemo(
     () =>
@@ -35,7 +39,11 @@ function MoodResult({ mood, error }) {
   );
 
   console.log("[MoodResult] Render with:", {
-    mood,
+    rawMood: mood,
+    normalizedMood,
+    variant,
+    reason,
+    message,
     error,
     hasMoodData: !!moodData,
     songsCount: songs.length,
@@ -49,7 +57,7 @@ function MoodResult({ mood, error }) {
     );
   }
 
-  if (!mood) return null;
+  if (!hasApiMood) return null;
 
   const handleAnotherRecommendation = () => {
     // No llamamos a la API, solo re-randomizamos las canciones
@@ -67,12 +75,21 @@ function MoodResult({ mood, error }) {
             <div className="mood-heading-text">
               <p className="mood-main-line">
                 {moodData.emoji} Parece que estás {moodData.label}
+                {variant ? ` (${variant})` : ""}
               </p>
               <h2>{moodData.title}</h2>
             </div>
           </div>
 
-          {moodData.description && (
+          {message && <p className="mood-message">{message}</p>}
+
+          {reason && (
+            <p className="mood-reason">
+              Motivo: {reason}
+            </p>
+          )}
+
+          {!message && moodData.description && (
             <p className="mood-description">{moodData.description}</p>
           )}
 
@@ -81,7 +98,7 @@ function MoodResult({ mood, error }) {
           )}
         </div>
       ) : (
-        <h2>Estado detectado: {mood}</h2>
+        <h2>Estado detectado: {normalizedMood || mood}</h2>
       )}
 
       {hasSongs ? (
@@ -106,7 +123,7 @@ function MoodResult({ mood, error }) {
           </button>
         </>
       ) : (
-        <p>No hay canciones para este estado por ahora.</p>
+        <p>Todavía no hay canciones para este estado.</p>
       )}
     </div>
   );

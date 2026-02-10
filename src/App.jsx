@@ -5,6 +5,9 @@ import MoodResult from "./components/MoodResult/MoodResult";
 
 function App() {
   const [currentMood, setCurrentMood] = useState(null);
+  const [variant, setVariant] = useState(null);
+  const [reason, setReason] = useState(null);
+  const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -12,13 +15,19 @@ function App() {
     setLoading(true);
     setError(null);
     setCurrentMood(null);
+    setVariant(null);
+    setReason(null);
+    setMessage(null);
 
     try {
       const result = await getMoodFromText(text);
-      console.log("[App] Result from API, state to render:", { mood: result.mood, error: result.error });
+      console.log("[App] Result from API, state to render:", result);
 
-      setCurrentMood(result.mood);
-      setError(result.error);
+      setCurrentMood(result.mood ?? null);
+      setVariant(result.variant ?? null);
+      setReason(result.reason ?? null);
+      setMessage(result.message ?? null);
+      setError(result.error ?? null);
     } catch (err) {
       console.error("[App] handleSubmit error:", err);
       setError("No se pudo interpretar el estado de ánimo 😕");
@@ -33,7 +42,13 @@ function App() {
 
       {loading && <p>Analizando estado de ánimo...</p>}
 
-      <MoodResult mood={currentMood} error={error} />
+      <MoodResult
+        mood={currentMood}
+        variant={variant}
+        reason={reason}
+        message={message}
+        error={error}
+      />
     </>
   );
 }
