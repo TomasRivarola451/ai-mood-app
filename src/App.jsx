@@ -4,6 +4,8 @@ import MoodInput from "./components/MoodInput/MoodInput";
 import MoodResult from "./components/MoodResult/MoodResult";
 import Layout from "./components/Layout/Layout";
 import { useTheme } from "./theme/ThemeContext.jsx";
+import { EmotionalAudioProvider } from "./audio/EmotionalAudioProvider.jsx";
+import AudioToggleButton from "./components/AudioToggleButton/AudioToggleButton.jsx";
 
 function App() {
   const [currentMood, setCurrentMood] = useState(null);
@@ -49,22 +51,26 @@ function App() {
 
   return (
     <Layout>
-      <MoodInput onSubmit={handleSubmit} />
+      <EmotionalAudioProvider mood={currentMood}>
+        <MoodInput onSubmit={handleSubmit} />
 
-      {loading && (
-        <div className="loading-indicator">
-          <span className="loading-dot" />
-          <p>Estamos leyendo tu mensaje con cuidado…</p>
-        </div>
-      )}
+        {loading && (
+          <div className="loading-indicator">
+            <span className="loading-dot" />
+            <p>Estamos leyendo tu mensaje con cuidado…</p>
+          </div>
+        )}
 
-      <MoodResult
-        mood={currentMood}
-        variant={variant}
-        reason={reason}
-        message={message}
-        error={error}
-      />
+        <MoodResult
+          mood={currentMood}
+          variant={variant}
+          reason={reason}
+          message={message}
+          error={error}
+        />
+
+        <AudioToggleButton />
+      </EmotionalAudioProvider>
     </Layout>
   );
 }

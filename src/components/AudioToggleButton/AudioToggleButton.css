@@ -1,0 +1,45 @@
+.audio-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 40;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  background: rgba(15, 23, 42, 0.9);
+  color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.9;
+  transition:
+    opacity 0.15s ease,
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.audio-toggle:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.6);
+}
+
+.audio-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.5);
+}
+
+@media (max-width: 640px) {
+  .audio-toggle {
+    right: 12px;
+    bottom: 12px;
+    padding: 6px 12px;
+    font-size: 0.82rem;
+  }
+}
+
