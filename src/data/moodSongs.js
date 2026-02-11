@@ -21,6 +21,14 @@ export const moodSongs = {
       { title: "I Gotta Feeling", artist: "Black Eyed Peas" },
       { title: "Levitating", artist: "Dua Lipa" },
       { title: "Sugar", artist: "Maroon 5" }
+    ],
+    albums: [
+      { title: "24K Magic", artist: "Bruno Mars", cover: "" },
+      { title: "Purpose", artist: "Justin Bieber", cover: "" },
+      { title: "Dua Lipa", artist: "Dua Lipa", cover: "" },
+      { title: "Future Nostalgia", artist: "Dua Lipa", cover: "" },
+      { title: "÷", artist: "Ed Sheeran", cover: "" },
+      { title: "Random Access Memories", artist: "Daft Punk", cover: "" }
     ]
   },
   sad: {
@@ -45,6 +53,14 @@ export const moodSongs = {
       { title: "I Can't Make You Love Me", artist: "Bonnie Raitt" },
       { title: "Un Año Más", artist: "La Oreja de Van Gogh" },
       { title: "Te Extraño", artist: "Xtreme" }
+    ],
+    albums: [
+      { title: "21", artist: "Adele", cover: "" },
+      { title: "A Rush of Blood to the Head", artist: "Coldplay", cover: "" },
+      { title: "When We All Fall Asleep", artist: "Billie Eilish", cover: "" },
+      { title: "Strange Trails", artist: "Lord Huron", cover: "" },
+      { title: "For Emma, Forever Ago", artist: "Bon Iver", cover: "" },
+      { title: "Melodrama", artist: "Lorde", cover: "" }
     ]
   },
   chill: {
@@ -69,6 +85,14 @@ export const moodSongs = {
       { title: "Sunflower", artist: "Post Malone, Swae Lee" },
       { title: "Come Through and Chill", artist: "Miguel" },
       { title: "Good News", artist: "Mac Miller" }
+    ],
+    albums: [
+      { title: "Blonde", artist: "Frank Ocean", cover: "" },
+      { title: "American Teen", artist: "Khalid", cover: "" },
+      { title: "Currents", artist: "Tame Impala", cover: "" },
+      { title: "Freudian", artist: "Daniel Caesar", cover: "" },
+      { title: "Swimming", artist: "Mac Miller", cover: "" },
+      { title: "Sunset Season", artist: "Conan Gray", cover: "" }
     ]
   },
   energetic: {
@@ -93,6 +117,14 @@ export const moodSongs = {
       { title: "Can't Stop", artist: "Red Hot Chili Peppers" },
       { title: "Rock Your Body", artist: "Justin Timberlake" },
       { title: "Tusa", artist: "Karol G, Nicki Minaj" }
+    ],
+    albums: [
+      { title: "The Eminem Show", artist: "Eminem", cover: "" },
+      { title: "The Rising Tied", artist: "Fort Minor", cover: "" },
+      { title: "Meteora", artist: "Linkin Park", cover: "" },
+      { title: "A Night at the Opera", artist: "Queen", cover: "" },
+      { title: "The Heist", artist: "Macklemore & Ryan Lewis", cover: "" },
+      { title: "Nevermind", artist: "Nirvana", cover: "" }
     ]
   },
   angry: {
@@ -117,6 +149,14 @@ export const moodSongs = {
       { title: "Freak on a Leash", artist: "Korn" },
       { title: "Down with the Sickness", artist: "Disturbed" },
       { title: "One Step Closer", artist: "Linkin Park" }
+    ],
+    albums: [
+      { title: "Rage Against The Machine", artist: "Rage Against The Machine", cover: "" },
+      { title: "Nevermind", artist: "Nirvana", cover: "" },
+      { title: "American Idiot", artist: "Green Day", cover: "" },
+      { title: "Hybrid Theory", artist: "Linkin Park", cover: "" },
+      { title: "Appetite for Destruction", artist: "Guns N' Roses", cover: "" },
+      { title: "The Sickness", artist: "Disturbed", cover: "" }
     ]
   },
   neutral: {
@@ -141,6 +181,14 @@ export const moodSongs = {
       { title: "Let It Go", artist: "James Bay" },
       { title: "Yellow", artist: "Coldplay" },
       { title: "Gravity", artist: "John Mayer" }
+    ],
+    albums: [
+      { title: "In Between Dreams", artist: "Jack Johnson", cover: "" },
+      { title: "Come Away With Me", artist: "Norah Jones", cover: "" },
+      { title: "Parachutes", artist: "Coldplay", cover: "" },
+      { title: "Vespertine", artist: "Björk", cover: "" },
+      { title: "Wanted on Voyage", artist: "George Ezra", cover: "" },
+      { title: "Chaos and the Calm", artist: "James Bay", cover: "" }
     ]
   },
   tired: {
@@ -165,6 +213,14 @@ export const moodSongs = {
       { title: "Saturn", artist: "Sleeping At Last" },
       { title: "Cherry", artist: "Lana Del Rey" },
       { title: "The Stable Song", artist: "Gregory Alan Isakov" }
+    ],
+    albums: [
+      { title: "22, A Million", artist: "Bon Iver", cover: "" },
+      { title: "Nectar", artist: "Joji", cover: "" },
+      { title: "Wasteland, Baby!", artist: "Hozier", cover: "" },
+      { title: "Atlas: Space", artist: "Sleeping At Last", cover: "" },
+      { title: "Ultraviolence", artist: "Lana Del Rey", cover: "" },
+      { title: "The Weatherman", artist: "Gregory Alan Isakov", cover: "" }
     ]
   }
 };

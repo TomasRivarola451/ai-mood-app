@@ -61,19 +61,109 @@
   opacity: 0.85;
 }
 
+/* Layout: canciones | álbumes en desktop, apilado en mobile */
+.mood-result-content {
+  display: grid;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .mood-result-content {
+    grid-template-columns: 1fr minmax(260px, 320px);
+    align-items: start;
+  }
+}
+
+.mood-result-songs {
+  min-width: 0;
+}
+
+.mood-result-empty {
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Lista de canciones en cards */
 .song-list {
   list-style: none;
   padding: 0;
-  margin: 12px 0 16px;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.song-item {
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+.song-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
-.song-item:last-child {
-  border-bottom: none;
+.song-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  background: rgba(51, 65, 85, 0.5);
+}
+
+.song-card-cover {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.song-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.song-card-cover-placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.3) 0%, rgba(71, 85, 105, 0.4) 100%);
+}
+
+.song-card-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.song-card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song-card-artist {
+  font-size: 0.88rem;
+  color: var(--secondary-color);
+  opacity: 0.95;
+}
+
+.song-card-album {
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+  opacity: 0.75;
 }
 
 .another-recommendation {
@@ -96,6 +186,105 @@
 .another-recommendation:active {
   transform: translateY(0);
   box-shadow: none;
+}
+
+/* Sección álbumes recomendados */
+.mood-result-albums {
+  padding: 16px 0 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  animation: mood-fade-in var(--motion-duration, 380ms) cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+@media (min-width: 768px) {
+  .mood-result-albums {
+    border-top: none;
+    padding: 0;
+    border-left: 1px solid rgba(148, 163, 184, 0.2);
+    padding-left: 24px;
+  }
+}
+
+.albums-section-title {
+  margin: 0 0 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.albums-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 420px) {
+  .albums-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+.album-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.album-card:hover {
+  transform: scale(1.03);
+}
+
+.album-card-cover {
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(30, 41, 59, 0.7);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  margin-bottom: 8px;
+}
+
+.album-card:hover .album-card-cover {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.album-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.album-card-cover-placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, rgba(148, 163, 184, 0.25) 0%, rgba(71, 85, 105, 0.4) 100%);
+}
+
+.album-card-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  display: block;
+  line-height: 1.25;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.album-card-artist {
+  font-size: 0.76rem;
+  color: var(--secondary-color);
+  opacity: 0.9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .error {

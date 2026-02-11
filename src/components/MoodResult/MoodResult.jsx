@@ -100,29 +100,77 @@ function MoodResult({ mood, variant, reason, message, error }) {
         <h2>Estado detectado: {normalizedMood || mood}</h2>
       )}
 
-      {hasSongs ? (
-        <>
-          <ul className="song-list">
-            {songs.map((song, index) => (
-              <li
-                key={`${song.title}-${song.artist}-${index}`}
-                className="song-item"
-              >
-                <strong>{song.title}</strong> – {song.artist}
-              </li>
-            ))}
-          </ul>
+      {hasSongs || (moodData && moodData.albums?.length) ? (
+        <div className="mood-result-content">
+          <div className="mood-result-songs">
+            {hasSongs ? (
+              <>
+                <ul className="song-list">
+                  {songs.map((song, index) => (
+                    <li
+                      key={`${song.title}-${song.artist}-${index}`}
+                      className="song-card"
+                    >
+                      <div className="song-card-cover">
+                        {(song.cover || song.image) ? (
+                          <img
+                            src={song.cover || song.image}
+                            alt=""
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span className="song-card-cover-placeholder" />
+                        )}
+                      </div>
+                      <div className="song-card-info">
+                        <strong className="song-card-title">{song.title}</strong>
+                        <span className="song-card-artist">{song.artist}</span>
+                        {song.album && (
+                          <span className="song-card-album">{song.album}</span>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  type="button"
+                  className="another-recommendation"
+                  onClick={handleAnotherRecommendation}
+                >
+                  Otra recomendación
+                </button>
+              </>
+            ) : (
+              <p className="mood-result-empty">Todavía no hay canciones para este estado.</p>
+            )}
+          </div>
 
-          <button
-            type="button"
-            className="another-recommendation"
-            onClick={handleAnotherRecommendation}
-          >
-            Otra recomendación
-          </button>
-        </>
+          {moodData?.albums?.length > 0 && (
+            <aside className="mood-result-albums">
+              <h3 className="albums-section-title">Álbumes recomendados</h3>
+              <div className="albums-grid">
+                {(moodData.albums.slice(0, 6)).map((album, index) => (
+                  <div
+                    key={`${album.title}-${album.artist}-${index}`}
+                    className="album-card"
+                  >
+                    <div className="album-card-cover">
+                      {album.cover ? (
+                        <img src={album.cover} alt="" loading="lazy" />
+                      ) : (
+                        <span className="album-card-cover-placeholder" />
+                      )}
+                    </div>
+                    <span className="album-card-title">{album.title}</span>
+                    <span className="album-card-artist">{album.artist}</span>
+                  </div>
+                ))}
+              </div>
+            </aside>
+          )}
+        </div>
       ) : (
-        <p>Todavía no hay canciones para este estado.</p>
+        <p className="mood-result-empty">Todavía no hay canciones para este estado.</p>
       )}
     </div>
   );

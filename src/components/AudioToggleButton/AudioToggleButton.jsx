@@ -14,11 +14,11 @@ function AudioToggleButton() {
   return (
     <button
       type="button"
-      className="audio-toggle"
+      className={`audio-toggle ${isUserPaused ? "audio-toggle--muted" : ""}`}
       onClick={togglePlayPause}
       aria-label={label}
     >
-      {isUserPaused ? "🔇 Pausado" : "🔊 Sonido activo"}
+      {isUserPaused ? "🔇" : "🔊"}
     </button>
   );
 }
