@@ -1,8 +1,33 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { normalizeMood } from "../services/moodAI";
 
-// Definición de themes por mood canónico.
-// Los colores son suaves y modernos, evitando saturación.
+/* -------------------------------------------------- */
+/* 🎨 Aura dinámica por mood                         */
+/* -------------------------------------------------- */
+
+function getAuraColor(mood) {
+  switch (mood) {
+    case "happy":
+      return "rgba(34, 197, 94, 0.25)";
+    case "sad":
+      return "rgba(30, 64, 175, 0.35)";
+    case "chill":
+      return "rgba(91, 33, 182, 0.3)";
+    case "energetic":
+      return "rgba(249, 115, 22, 0.3)";
+    case "tired":
+      return "rgba(71, 85, 105, 0.35)";
+    case "angry":
+      return "rgba(127, 29, 29, 0.35)";
+    default:
+      return "rgba(100, 116, 139, 0.25)";
+  }
+}
+
+/* -------------------------------------------------- */
+/* 🎨 Themes por mood                                */
+/* -------------------------------------------------- */
+
 export const themesByMood = {
   neutral: {
     backgroundGradient:
@@ -67,9 +92,11 @@ export const themesByMood = {
     accentColor: "#f97373",
     animationStyle: "firm",
   },
-  // Fallback para cualquier mood desconocido – debería mapearse a neutral,
-  // pero mantenemos coherencia si llegara a utilizarse directamente.
 };
+
+/* -------------------------------------------------- */
+/* 🧠 Context                                         */
+/* -------------------------------------------------- */
 
 const ThemeContext = createContext({
   mood: "neutral",
@@ -88,18 +115,21 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     const root = document.documentElement;
 
-    // Atributos para CSS basados en mood y animación
+    // Atributos globales
     root.setAttribute("data-theme", currentMood);
     root.setAttribute("data-theme-animation", theme.animationStyle);
 
-    // Variables CSS para colores y fondo
+    // Variables visuales
     root.style.setProperty("--bg-gradient", theme.backgroundGradient);
     root.style.setProperty("--primary-color", theme.primaryColor);
     root.style.setProperty("--secondary-color", theme.secondaryColor);
     root.style.setProperty("--text-color", theme.textColor);
     root.style.setProperty("--accent-color", theme.accentColor);
 
-    // Variables para controlar ritmo de animación según el mood
+    // Nueva variable para aura
+    root.style.setProperty("--aura-color", getAuraColor(currentMood));
+
+    // Ritmo de animación
     const motionDuration =
       theme.animationStyle === "punchy"
         ? "260ms"
@@ -107,7 +137,8 @@ export function ThemeProvider({ children }) {
         ? "280ms"
         : theme.animationStyle === "soft-slow"
         ? "520ms"
-        : "380ms"; // calm / bright / default
+        : "380ms";
+
     root.style.setProperty("--motion-duration", motionDuration);
   }, [currentMood, theme]);
 
@@ -126,11 +157,12 @@ export function ThemeProvider({ children }) {
   );
 
   return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>
+      {children}
+    </ThemeContext.Provider>
   );
 }
 
 export function useTheme() {
   return useContext(ThemeContext);
 }
-
