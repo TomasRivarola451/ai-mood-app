@@ -52,27 +52,34 @@ function App() {
   return (
     <Layout>
       <EmotionalAudioProvider mood={currentMood}>
-        <MoodInput onSubmit={handleSubmit} />
-
-        {loading && (
-          <div className="loading-indicator">
-            <span className="loading-dot" />
-            <p>Estamos leyendo tu mensaje con cuidado…</p>
-          </div>
-        )}
-
-        <MoodResult
-          mood={currentMood}
-          variant={variant}
-          reason={reason}
-          message={message}
-          error={error}
-        />
-
-        <AudioToggleButton />
+        
+        <div className="left-panel">
+          <MoodInput onSubmit={handleSubmit} />
+  
+          {loading && (
+            <div className="loading-indicator">
+              <span className="loading-dot" />
+              <p>Estamos leyendo tu mensaje con cuidado…</p>
+            </div>
+          )}
+  
+          <MoodResult
+            mood={currentMood}
+            variant={variant}
+            reason={reason}
+            message={message}
+            error={error}
+          />
+        </div>
+  
+        <div className="right-panel">
+          <AudioToggleButton />
+        </div>
+  
       </EmotionalAudioProvider>
     </Layout>
   );
+  
 }
 
 export default App;

@@ -1,48 +1,22 @@
 .app-layout {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    padding: 32px 16px 40px;
-    min-height: 100vh;
-    overflow: hidden;
-  }
-  
-  .aura-layer {
-    position: absolute;
-    width: 140%;
-    height: 140%;
-    top: -20%;
-    left: -20%;
-    pointer-events: none;
-  
-    background: radial-gradient(
-      circle at center,
-      var(--aura-color, rgba(100, 116, 139, 0.25)) 0%,
-      transparent 60%
-    );
-  
-    filter: blur(120px);
-    opacity: 0.6;
-  
-    animation: aura-float 20s ease-in-out infinite alternate;
-  
-    z-index: 0;
-  }
-  
-  .app-layout-inner {
-    position: relative;
-    z-index: 1;
-  }
-  
-  @keyframes aura-float {
-    0% {
-      transform: translate(0px, 0px) scale(1);
-    }
-    50% {
-      transform: translate(30px, -20px) scale(1.05);
-    }
-    100% {
-      transform: translate(-20px, 20px) scale(1.02);
-    }
-  }
-  
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-gradient);
+  overflow: hidden;
+  position: relative;
+}
+
+.app-layout-inner {
+  width: 95%;
+  height: 92%;
+  max-width: 1400px;
+
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 2rem;
+
+  backdrop-filter: blur(40px);
+}

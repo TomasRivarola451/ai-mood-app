@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
