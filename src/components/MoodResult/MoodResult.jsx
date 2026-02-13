@@ -148,27 +148,26 @@ function MoodResult({ mood, variant, reason, message, error }) {
           {moodData?.albums?.length > 0 && (
             <aside className="mood-result-albums">
               <h3 className="albums-section-title">Álbumes recomendados</h3>
-              <div className="albums-grid">
-                {(moodData.albums.slice(0, 6)).map((album, index) => (
-                  <div
-                    key={`${album.title}-${album.artist}-${index}`}
-                    className="album-card"
-                  >
-                    <div className="album-card-cover">
-                      {album.cover ? (
-                        <img src={album.cover} alt="" loading="lazy" />
-                      ) : (
-                        <span className="album-card-cover-placeholder" />
-                      )}
-                    </div>
+              <div className="albums-stack">
+              {moodData.albums.slice(0, 3).map((album, index) => (
+                <div
+                  key={`${album.title}-${album.artist}-${index}`}
+                  className={`album-card album-${index}`}
+                >
+                  {album.cover ? (
+                    <img src={album.cover} alt={album.title} loading="lazy" />
+                  ) : (
+                    <span className="album-card-cover-placeholder" />
+                  )}
+
+                  <div className="album-overlay">
                     <span className="album-card-title">{album.title}</span>
                     <span className="album-card-artist">{album.artist}</span>
                   </div>
-                ))}
-              </div>
-            </aside>
-          )}
-        </div>
+                </div>
+              ))}
+            </div>
+
       ) : (
         <p className="mood-result-empty">Todavía no hay canciones para este estado.</p>
       )}
