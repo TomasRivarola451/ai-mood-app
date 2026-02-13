@@ -24,7 +24,6 @@ function MoodResult({ mood, variant, reason, message, error }) {
     hasApiMood && normalizedMood ? moodSongs[normalizedMood] || null : null;
 
   useEffect(() => {
-    // Cada vez que cambia el mood desde el backend, generamos una nueva playlist
     if (hasApiMood) {
       setSeed((prev) => prev + 1);
     }
@@ -38,17 +37,6 @@ function MoodResult({ mood, variant, reason, message, error }) {
     [moodData, seed]
   );
 
-  console.log("[MoodResult] Render with:", {
-    rawMood: mood,
-    normalizedMood,
-    variant,
-    reason,
-    message,
-    error,
-    hasMoodData: !!moodData,
-    songsCount: songs.length,
-  });
-
   if (error) {
     return (
       <div className="mood-result">
@@ -60,11 +48,11 @@ function MoodResult({ mood, variant, reason, message, error }) {
   if (!hasApiMood) return null;
 
   const handleAnotherRecommendation = () => {
-    // No llamamos a la API, solo re-randomizamos las canciones
     setSeed((prev) => prev + 1);
   };
 
   const hasSongs = songs.length > 0;
+  const hasAlbums = moodData?.albums?.length > 0;
 
   return (
     <div className="mood-result">
@@ -81,17 +69,10 @@ function MoodResult({ mood, variant, reason, message, error }) {
           </div>
 
           {message && <p className="mood-message">{message}</p>}
-
-          {reason && (
-            <p className="mood-reason">
-              {reason}
-            </p>
-          )}
-
+          {reason && <p className="mood-reason">{reason}</p>}
           {!message && moodData.description && (
             <p className="mood-description">{moodData.description}</p>
           )}
-
           {moodData.quote && (
             <p className="mood-quote">“{moodData.quote}”</p>
           )}
@@ -100,7 +81,7 @@ function MoodResult({ mood, variant, reason, message, error }) {
         <h2>Estado detectado: {normalizedMood || mood}</h2>
       )}
 
-      {hasSongs || (moodData && moodData.albums?.length) ? (
+      {hasSongs || hasAlbums ? (
         <div className="mood-result-content">
           <div className="mood-result-songs">
             {hasSongs ? (
@@ -112,7 +93,7 @@ function MoodResult({ mood, variant, reason, message, error }) {
                       className="song-card"
                     >
                       <div className="song-card-cover">
-                        {(song.cover || song.image) ? (
+                        {song.cover || song.image ? (
                           <img
                             src={song.cover || song.image}
                             alt=""
@@ -122,16 +103,24 @@ function MoodResult({ mood, variant, reason, message, error }) {
                           <span className="song-card-cover-placeholder" />
                         )}
                       </div>
+
                       <div className="song-card-info">
-                        <strong className="song-card-title">{song.title}</strong>
-                        <span className="song-card-artist">{song.artist}</span>
+                        <strong className="song-card-title">
+                          {song.title}
+                        </strong>
+                        <span className="song-card-artist">
+                          {song.artist}
+                        </span>
                         {song.album && (
-                          <span className="song-card-album">{song.album}</span>
+                          <span className="song-card-album">
+                            {song.album}
+                          </span>
                         )}
                       </div>
                     </li>
                   ))}
                 </ul>
+
                 <button
                   type="button"
                   className="another-recommendation"
@@ -141,35 +130,52 @@ function MoodResult({ mood, variant, reason, message, error }) {
                 </button>
               </>
             ) : (
-              <p className="mood-result-empty">Todavía no hay canciones para este estado.</p>
+              <p className="mood-result-empty">
+                Todavía no hay canciones para este estado.
+              </p>
             )}
           </div>
 
-          {moodData?.albums?.length > 0 && (
+          {hasAlbums && (
             <aside className="mood-result-albums">
-              <h3 className="albums-section-title">Álbumes recomendados</h3>
+              <h3 className="albums-section-title">
+                Álbumes recomendados
+              </h3>
+
               <div className="albums-stack">
-              {moodData.albums.slice(0, 3).map((album, index) => (
-                <div
-                  key={`${album.title}-${album.artist}-${index}`}
-                  className={`album-card album-${index}`}
-                >
-                  {album.cover ? (
-                    <img src={album.cover} alt={album.title} loading="lazy" />
-                  ) : (
-                    <span className="album-card-cover-placeholder" />
-                  )}
+                {moodData.albums.slice(0, 3).map((album, index) => (
+                  <div
+                    key={`${album.title}-${album.artist}-${index}`}
+                    className={`album-card album-${index}`}
+                  >
+                    {album.cover ? (
+                      <img
+                        src={album.cover}
+                        alt={album.title}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span className="album-card-cover-placeholder" />
+                    )}
 
-                  <div className="album-overlay">
-                    <span className="album-card-title">{album.title}</span>
-                    <span className="album-card-artist">{album.artist}</span>
+                    <div className="album-overlay">
+                      <span className="album-card-title">
+                        {album.title}
+                      </span>
+                      <span className="album-card-artist">
+                        {album.artist}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-
+                ))}
+              </div>
+            </aside>
+          )}
+        </div>
       ) : (
-        <p className="mood-result-empty">Todavía no hay canciones para este estado.</p>
+        <p className="mood-result-empty">
+          Todavía no hay canciones para este estado.
+        </p>
       )}
     </div>
   );
