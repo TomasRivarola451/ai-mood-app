@@ -1,3 +1,7 @@
+/* ====================================== */
+/* GLOBAL STYLES - SOLO BASE, SIN LAYOUT */
+/* ====================================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,12 +13,10 @@ body {
   color: var(--text-color);
   font-family: var(--font-main);
   min-height: 100vh;
-
   transition:
     background 0.5s ease,
     background-color 0.5s ease,
     color 0.4s ease;
-
   animation: mood-fade 0.6s ease;
 }
 
@@ -27,42 +29,27 @@ body {
   }
 }
 
+/* Eliminar estilos por defecto de listas */
 ul {
   list-style: none;
   padding: 0;
 }
 
+/* Botones con cursor pointer */
 button {
   cursor: pointer;
+  font-family: inherit;
 }
 
-/* ---------------- Layout general ---------------- */
-
-.app-layout {
-  display: flex;
-  justify-content: center;
-  padding: 32px 16px 40px;
+/* Inputs heredan fuente */
+input,
+textarea {
+  font-family: inherit;
 }
 
-.app-layout-inner {
-  width: 100%;
-  max-width: 720px;
-}
-
-/* ---------------- Cards ---------------- */
-
-.card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-
-  transition:
-    background 0.4s ease,
-    border-color 0.4s ease;
-}
-
-/* ---------------- Loading emocional ---------------- */
+/* ====================================== */
+/* LOADING INDICATOR GLOBAL */
+/* ====================================== */
 
 .loading-indicator {
   margin-top: 24px;
@@ -78,11 +65,8 @@ button {
   height: 10px;
   border-radius: 999px;
   background: var(--accent-color);
-
   box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4);
-
-  animation: loading-pulse var(--motion-duration, 380ms)
-    ease-in-out infinite;
+  animation: loading-pulse 1.2s ease-in-out infinite;
 }
 
 @keyframes loading-pulse {
@@ -100,7 +84,9 @@ button {
   }
 }
 
-/* ---------------- Accent glow controlado ---------------- */
+/* ====================================== */
+/* ACCENT GLOW POR TEMA (OPCIONAL) */
+/* ====================================== */
 
 .accent-glow {
   box-shadow: 0 0 0 transparent;

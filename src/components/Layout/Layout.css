@@ -1,22 +1,63 @@
+/* ====================================== */
+/* LAYOUT PRINCIPAL - CENTRADO Y SCROLL */
+/* ====================================== */
+
 .app-layout {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* NO center, para permitir scroll */
   background: var(--bg-gradient);
-  overflow: hidden;
+  padding: 40px 20px;
   position: relative;
+  overflow-y: auto; /* CRÍTICO: permite scroll vertical */
+  overflow-x: hidden;
 }
 
+/* Capa atmosférica de fondo */
+.aura-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  background: radial-gradient(
+    circle at 50% 20%,
+    rgba(56, 189, 248, 0.08) 0%,
+    transparent 60%
+  );
+  transition: opacity 0.5s ease;
+}
+
+/* Contenedor interno del contenido */
 .app-layout-inner {
-  width: 95%;
-  height: 92%;
-  max-width: 1400px;
+  width: 100%;
+  max-width: 1200px; /* Ancho máximo razonable */
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  z-index: 1;
+}
 
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 2rem;
+/* Responsive: en pantallas grandes permitir más ancho */
+@media (min-width: 1400px) {
+  .app-layout-inner {
+    max-width: 1400px;
+  }
+}
 
-  backdrop-filter: blur(40px);
+/* Mobile: reducir padding */
+@media (max-width: 640px) {
+  .app-layout {
+    padding: 24px 16px;
+  }
+  
+  .app-layout-inner {
+    gap: 24px;
+  }
 }
