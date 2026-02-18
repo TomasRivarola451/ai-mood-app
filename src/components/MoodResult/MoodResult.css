@@ -1,16 +1,28 @@
-/* ====================================== */
-/* MOOD RESULT - LAYOUT HORIZONTAL */
-/* ====================================== */
-
 .mood-result {
-  margin-top: 0; /* Ya hay gap en el contenedor padre */
-  padding: 32px 28px;
-  border-radius: 16px;
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(18px);
-  animation: mood-fade-in 0.38s cubic-bezier(0.16, 0.84, 0.44, 1);
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  padding: 28px 32px 32px;
+  border-radius: 20px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 
+    0 20px 50px rgba(15, 23, 42, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  overflow: hidden;
+  animation: mood-result-appear 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+@keyframes mood-result-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* ====================================== */
@@ -18,7 +30,9 @@
 /* ====================================== */
 
 .mood-header {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
 }
 
 .mood-heading {
@@ -30,16 +44,24 @@
 }
 
 .mood-heading-text h2 {
-  margin: 0;
-  color: var(--primary-color);
-  font-size: 1.5rem;
+  margin: 0 0 6px;
+  font-size: 1.8rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--accent-color) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .mood-main-line {
   margin: 0 0 4px;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--secondary-color);
 }
 
@@ -47,12 +69,12 @@
   margin: 8px 0;
   font-size: 0.95rem;
   opacity: 0.9;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .mood-message {
   margin: 8px 0;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--primary-color);
 }
@@ -68,8 +90,8 @@
   font-size: 0.92rem;
   font-style: italic;
   opacity: 0.85;
-  padding-left: 12px;
-  border-left: 2px solid var(--accent-color);
+  padding-left: 14px;
+  border-left: 3px solid var(--accent-color);
 }
 
 /* ====================================== */
@@ -77,22 +99,25 @@
 /* ====================================== */
 
 .mood-result-content {
+  flex: 1;
   display: grid;
   gap: 32px;
-  margin-top: 24px;
-  grid-template-columns: 1fr; /* Mobile: apilado */
+  grid-template-columns: 1fr;
+  min-height: 0; 
 }
 
 /* Desktop: layout horizontal */
 @media (min-width: 900px) {
   .mood-result-content {
-    grid-template-columns: 1.5fr 1fr; /* Canciones más anchas */
-    align-items: start; /* Alineación arriba, no stretch */
+    grid-template-columns: 1.6fr 1fr;
+    align-items: stretch;
   }
 }
 
 .mood-result-songs {
-  min-width: 0; /* Previene overflow en grid */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .mood-result-empty {
@@ -101,22 +126,17 @@
 }
 
 /* ====================================== */
-/* LISTA DE CANCIONES EN CARDS */
+/* LISTA DE CANCIONES - GRID 2x3 */
 /* ====================================== */
 
 .song-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   display: grid;
   gap: 12px;
-}
-
-/* Grid de 2 columnas en pantallas medianas */
-@media (min-width: 640px) {
-  .song-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  grid-template-columns: repeat(2, 1fr);
+  flex: 1;
 }
 
 .song-card {
@@ -124,29 +144,60 @@
   align-items: center;
   gap: 14px;
   padding: 14px 16px;
-  border-radius: 12px;
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
+  border-radius: 14px;
+  background: rgba(30, 41, 59, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 0.84, 0.44, 1);
+  cursor: pointer;
+  opacity: 0;
+  animation: song-card-appear 0.4s cubic-bezier(0.16, 0.84, 0.44, 1) forwards;
+}
+
+/* Animación stagger para cada card */
+.song-card:nth-child(1) { animation-delay: 0.05s; }
+.song-card:nth-child(2) { animation-delay: 0.1s; }
+.song-card:nth-child(3) { animation-delay: 0.15s; }
+.song-card:nth-child(4) { animation-delay: 0.2s; }
+.song-card:nth-child(5) { animation-delay: 0.25s; }
+.song-card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes song-card-appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .song-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  background: rgba(51, 65, 85, 0.5);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(var(--accent-rgb, 56, 189, 248), 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: rgba(51, 65, 85, 0.6);
+  border-color: rgba(var(--accent-rgb, 56, 189, 248), 0.4);
 }
 
 .song-card-cover {
   flex-shrink: 0;
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 10px;
   overflow: hidden;
   background: rgba(15, 23, 42, 0.8);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease;
+}
+
+.song-card:hover .song-card-cover {
+  transform: scale(1.05);
 }
 
 .song-card-cover img {
@@ -161,7 +212,7 @@
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(148, 163, 184, 0.3) 0%,
+    rgba(var(--accent-rgb, 148, 163, 184), 0.3) 0%,
     rgba(71, 85, 105, 0.4) 100%
   );
 }
@@ -176,24 +227,26 @@
 
 .song-card-title {
   font-size: 0.96rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--primary-color);
   display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  letter-spacing: -0.01em;
 }
 
 .song-card-artist {
   font-size: 0.88rem;
   color: var(--secondary-color);
   opacity: 0.95;
+  font-weight: 500;
 }
 
 .song-card-album {
   font-size: 0.8rem;
   color: var(--secondary-color);
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 /* ====================================== */
@@ -201,84 +254,110 @@
 /* ====================================== */
 
 .another-recommendation {
+  padding: 11px 24px;
   border: none;
-  border-radius: 999px;
-  padding: 10px 20px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
+  border-radius: 12px;
   background: var(--accent-color);
   color: #111;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 0.84, 0.44, 1);
+  box-shadow: 
+    0 4px 14px rgba(var(--accent-rgb, 56, 189, 248), 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  align-self: flex-start;
 }
 
 .another-recommendation:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 
+    0 6px 20px rgba(var(--accent-rgb, 56, 189, 248), 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .another-recommendation:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    0 2px 8px rgba(var(--accent-rgb, 56, 189, 248), 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* ====================================== */
-/* SECCIÓN ÁLBUMES - LAYOUT LATERAL */
+/* SECCIÓN ÁLBUMES */
 /* ====================================== */
 
 .mood-result-albums {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
-  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
 }
 
-/* Desktop: borde lateral en vez de superior */
 @media (min-width: 900px) {
   .mood-result-albums {
     border-top: none;
-    border-left: 1px solid rgba(148, 163, 184, 0.2);
+    border-left: 1px solid rgba(148, 163, 184, 0.15);
     padding-top: 0;
     padding-left: 32px;
   }
 }
 
 .albums-section-title {
-  margin: 0 0 20px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  margin: 0 0 24px;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--primary-color);
+  letter-spacing: -0.01em;
 }
 
 /* ====================================== */
-/* ALBUMS STACK - EFECTO APILADO ELEGANTE */
+/* ALBUMS STACK */
 /* ====================================== */
 
 .albums-stack {
   position: relative;
-  height: 280px; /* Altura fija para contener el stack */
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  /* CRÍTICO: NO overflow hidden aquí */
+  margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
 }
 
 .album-card {
   position: absolute;
-  width: 160px;
-  height: 220px;
-  border-radius: 14px;
+  width: 170px;
+  height: 230px;
+  border-radius: 16px;
   overflow: hidden;
   transition:
-    transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1),
-    box-shadow 0.5s ease,
+    transform 0.55s cubic-bezier(0.16, 0.84, 0.44, 1),
+    box-shadow 0.55s ease,
     z-index 0.3s ease;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 
+    0 20px 45px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   will-change: transform;
+  opacity: 0;
+  animation: album-card-appear 0.5s cubic-bezier(0.16, 0.84, 0.44, 1) forwards;
+}
+
+.album-card:nth-child(1) { animation-delay: 0.4s; }
+.album-card:nth-child(2) { animation-delay: 0.5s; }
+.album-card:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes album-card-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* ====================================== */
@@ -286,7 +365,7 @@
 /* ====================================== */
 
 .album-0 {
-  transform: rotate(-12deg) translateX(-40px);
+  transform: rotate(-14deg) translateX(-45px);
   z-index: 1;
 }
 
@@ -296,27 +375,36 @@
 }
 
 .album-2 {
-  transform: rotate(12deg) translateX(40px);
+  transform: rotate(14deg) translateX(45px);
   z-index: 2;
 }
 
 /* ====================================== */
-/* HOVER - EXPANDEN HORIZONTALMENTE */
+/* HOVER - SEPARACIÓN COMPLETA */
 /* ====================================== */
 
 .albums-stack:hover .album-0 {
-  transform: translateX(-120px) rotate(-3deg);
+  transform: translateX(-195px) rotate(-2deg); /* Aumentado de -120px */
   z-index: 2;
+  box-shadow: 
+    0 25px 55px rgba(0, 0, 0, 0.7),
+    0 0 25px rgba(var(--accent-rgb, 56, 189, 248), 0.3);
 }
 
 .albums-stack:hover .album-1 {
   transform: translateX(0) rotate(0deg);
   z-index: 3;
+  box-shadow: 
+    0 30px 65px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(var(--accent-rgb, 56, 189, 248), 0.4);
 }
 
 .albums-stack:hover .album-2 {
-  transform: translateX(120px) rotate(3deg);
+  transform: translateX(195px) rotate(2deg); /* Aumentado de 120px */
   z-index: 2;
+  box-shadow: 
+    0 25px 55px rgba(0, 0, 0, 0.7),
+    0 0 25px rgba(var(--accent-rgb, 56, 189, 248), 0.3);
 }
 
 /* ====================================== */
@@ -327,35 +415,52 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.albums-stack:hover .album-card img {
+  transform: scale(1.05);
 }
 
 .album-overlay {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px 14px;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.75),
-    rgba(0, 0, 0, 0.4) 60%,
-    transparent
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.5) 60%,
+    transparent 100%
   );
   display: flex;
   flex-direction: column;
   text-align: left;
+  transition: background 0.3s ease;
+}
+
+.albums-stack:hover .album-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.6) 60%,
+    transparent 100%
+  );
 }
 
 .album-overlay .album-card-title {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: #fff;
   line-height: 1.3;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
 }
 
 .album-overlay .album-card-artist {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
 }
 
 /* ====================================== */
@@ -364,25 +469,37 @@
 
 .error {
   color: #fecaca;
-  font-weight: 500;
-  padding: 16px;
-  border-radius: 8px;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  font-weight: 600;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
 }
 
 /* ====================================== */
-/* ANIMACIÓN DE ENTRADA */
+/* RESPONSIVE: TABLET */
 /* ====================================== */
 
-@keyframes mood-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+@media (max-width: 900px) {
+  .song-list {
+    grid-template-columns: 1fr;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .albums-stack {
+    max-width: 400px;
+  }
+
+  .album-card {
+    width: 150px;
+    height: 200px;
+  }
+
+  .albums-stack:hover .album-0 {
+    transform: translateX(-165px) rotate(-2deg);
+  }
+
+  .albums-stack:hover .album-2 {
+    transform: translateX(165px) rotate(2deg);
   }
 }
 
@@ -396,36 +513,32 @@
   }
 
   .mood-heading-text h2 {
-    font-size: 1.3rem;
-  }
-
-  .song-list {
-    grid-template-columns: 1fr; /* 1 columna en mobile */
+    font-size: 1.5rem;
   }
 
   .albums-stack {
-    height: 240px;
+    height: 260px;
+    max-width: 320px;
   }
 
   .album-card {
-    width: 140px;
-    height: 190px;
+    width: 130px;
+    height: 180px;
   }
 
-  /* Ajustar posiciones para mobile */
   .album-0 {
-    transform: rotate(-10deg) translateX(-30px);
+    transform: rotate(-12deg) translateX(-35px);
   }
 
   .album-2 {
-    transform: rotate(10deg) translateX(30px);
+    transform: rotate(12deg) translateX(35px);
   }
 
   .albums-stack:hover .album-0 {
-    transform: translateX(-90px) rotate(-2deg);
+    transform: translateX(-140px) rotate(-2deg);
   }
 
   .albums-stack:hover .album-2 {
-    transform: translateX(90px) rotate(2deg);
+    transform: translateX(140px) rotate(2deg);
   }
 }

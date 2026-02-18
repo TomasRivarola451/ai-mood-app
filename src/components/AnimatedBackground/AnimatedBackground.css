@@ -1,0 +1,144 @@
+/* ====================================== */
+/* ANIMATED BACKGROUND - GRADIENTES SUTILES */
+/* ====================================== */
+
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  /* Orbes de gradiente flotantes */
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    mix-blend-mode: screen;
+    animation: float-orb 20s ease-in-out infinite;
+  }
+  
+  .gradient-orb-1 {
+    width: 500px;
+    height: 500px;
+    top: -10%;
+    left: -5%;
+    background: radial-gradient(
+      circle,
+      var(--orb-color-1, rgba(56, 189, 248, 0.3)) 0%,
+      transparent 70%
+    );
+    animation-delay: 0s;
+  }
+  
+  .gradient-orb-2 {
+    width: 600px;
+    height: 600px;
+    top: 40%;
+    right: -10%;
+    background: radial-gradient(
+      circle,
+      var(--orb-color-2, rgba(139, 92, 246, 0.25)) 0%,
+      transparent 70%
+    );
+    animation-delay: -7s;
+    animation-duration: 25s;
+  }
+  
+  .gradient-orb-3 {
+    width: 450px;
+    height: 450px;
+    bottom: -5%;
+    left: 30%;
+    background: radial-gradient(
+      circle,
+      var(--orb-color-3, rgba(34, 197, 94, 0.2)) 0%,
+      transparent 70%
+    );
+    animation-delay: -14s;
+    animation-duration: 30s;
+  }
+  
+  @keyframes float-orb {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+  
+  /* ====================================== */
+  /* COLORES DE ORBES POR TEMA */
+  /* ====================================== */
+  
+  [data-theme="happy"] {
+    --orb-color-1: rgba(34, 197, 94, 0.35);
+    --orb-color-2: rgba(250, 204, 21, 0.25);
+    --orb-color-3: rgba(34, 197, 94, 0.2);
+  }
+  
+  [data-theme="sad"] {
+    --orb-color-1: rgba(14, 165, 233, 0.3);
+    --orb-color-2: rgba(56, 189, 248, 0.25);
+    --orb-color-3: rgba(59, 130, 246, 0.2);
+  }
+  
+  [data-theme="energetic"] {
+    --orb-color-1: rgba(249, 115, 22, 0.35);
+    --orb-color-2: rgba(251, 146, 60, 0.3);
+    --orb-color-3: rgba(234, 88, 12, 0.25);
+  }
+  
+  [data-theme="chill"] {
+    --orb-color-1: rgba(139, 92, 246, 0.3);
+    --orb-color-2: rgba(167, 139, 250, 0.25);
+    --orb-color-3: rgba(124, 58, 237, 0.2);
+  }
+  
+  [data-theme="angry"] {
+    --orb-color-1: rgba(239, 68, 68, 0.35);
+    --orb-color-2: rgba(220, 38, 38, 0.3);
+    --orb-color-3: rgba(248, 113, 113, 0.25);
+  }
+  
+  [data-theme="tired"] {
+    --orb-color-1: rgba(100, 116, 139, 0.3);
+    --orb-color-2: rgba(71, 85, 105, 0.25);
+    --orb-color-3: rgba(148, 163, 184, 0.2);
+  }
+  
+  [data-theme="neutral"] {
+    --orb-color-1: rgba(56, 189, 248, 0.25);
+    --orb-color-2: rgba(139, 92, 246, 0.2);
+    --orb-color-3: rgba(34, 197, 94, 0.15);
+  }
+  
+  /* ====================================== */
+  /* RESPONSIVE: MOBILE */
+  /* ====================================== */
+  
+  @media (max-width: 768px) {
+    .gradient-orb-1 {
+      width: 350px;
+      height: 350px;
+    }
+  
+    .gradient-orb-2 {
+      width: 400px;
+      height: 400px;
+    }
+  
+    .gradient-orb-3 {
+      width: 300px;
+      height: 300px;
+    }
+  }

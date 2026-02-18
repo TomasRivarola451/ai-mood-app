@@ -1,23 +1,281 @@
-.audio-toggle {
-  width: 70px;
-  height: 70px;
-  border-radius: 20px;
+/* ====================================== */
+/* AUDIO TOGGLE BUTTON - PREMIUM REDESIGN */
+/* ====================================== */
 
+.audio-toggle {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 100;
+  
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
+  
+  /* Glassmorphism mejorado */
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(24px);
+  
+  /* Bordes con highlight */
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
   cursor: pointer;
-
-  transition: all 0.3s ease;
+  
+  /* Transiciones suaves */
+  transition: all 0.3s cubic-bezier(0.16, 0.84, 0.44, 1);
+  
+  /* Animación de entrada */
+  animation: audio-button-appear 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 
+@keyframes audio-button-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ====================================== */
+/* HOVER EFFECT */
+/* ====================================== */
+
 .audio-toggle:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px) scale(1.05);
+  border-color: rgba(var(--accent-rgb, 56, 189, 248), 0.5);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(var(--accent-rgb, 56, 189, 248), 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ====================================== */
+/* ACTIVE (CLICK) EFFECT */
+/* ====================================== */
+
+.audio-toggle:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(var(--accent-rgb, 56, 189, 248), 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ====================================== */
+/* ESTADO MUTED */
+/* ====================================== */
+
+.audio-toggle--muted {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(148, 163, 184, 0.2);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.audio-toggle--muted:hover {
+  background: rgba(30, 41, 59, 0.75);
+  border-color: rgba(148, 163, 184, 0.35);
+  box-shadow: 
+    0 8px 28px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(148, 163, 184, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ====================================== */
+/* ICON STYLING (SVG o EMOJI) */
+/* ====================================== */
+
+.audio-toggle {
+  font-size: 24px;
+  line-height: 1;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Estilos para iconos SVG */
+.audio-toggle svg {
+  color: var(--primary-color, #e5e7eb);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.audio-toggle:hover svg {
+  color: var(--accent-color);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+/* Cuando está muted, color más apagado */
+.audio-toggle--muted svg {
+  color: var(--secondary-color, #9ca3af);
+  opacity: 0.7;
+}
+
+.audio-toggle--muted:hover svg {
+  color: var(--primary-color, #e5e7ab);
+  opacity: 1;
+}
+
+/* Efecto de pulso cuando está reproduciendo */
+.audio-toggle:not(.audio-toggle--muted)::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent-rgb, 56, 189, 248), 0.3),
+    transparent
+  );
+  opacity: 0;
+  animation: audio-pulse 2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes audio-pulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.15);
+  }
+}
+
+/* ====================================== */
+/* GLOW POR TEMA CUANDO ESTÁ ACTIVO */
+/* ====================================== */
+
+/* Happy - Verde */
+[data-theme="happy"] .audio-toggle:not(.audio-toggle--muted) {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(34, 197, 94, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="happy"] .audio-toggle:not(.audio-toggle--muted):hover {
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(34, 197, 94, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Sad - Azul */
+[data-theme="sad"] .audio-toggle:not(.audio-toggle--muted) {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(56, 189, 248, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="sad"] .audio-toggle:not(.audio-toggle--muted):hover {
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(56, 189, 248, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Energetic - Naranja */
+[data-theme="energetic"] .audio-toggle:not(.audio-toggle--muted) {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(249, 115, 22, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="energetic"] .audio-toggle:not(.audio-toggle--muted):hover {
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(249, 115, 22, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Chill - Violeta */
+[data-theme="chill"] .audio-toggle:not(.audio-toggle--muted) {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(139, 92, 246, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="chill"] .audio-toggle:not(.audio-toggle--muted):hover {
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Angry - Rojo */
+[data-theme="angry"] .audio-toggle:not(.audio-toggle--muted) {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(239, 68, 68, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="angry"] .audio-toggle:not(.audio-toggle--muted):hover {
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(239, 68, 68, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Tired - Gris */
+[data-theme="tired"] .audio-toggle:not(.audio-toggle--muted) {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(100, 116, 139, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="tired"] .audio-toggle:not(.audio-toggle--muted):hover {
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(100, 116, 139, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ====================================== */
+/* RESPONSIVE: MOBILE */
+/* ====================================== */
+
+@media (max-width: 640px) {
+  .audio-toggle {
+    bottom: 16px;
+    left: 16px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+
+/* ====================================== */
+/* ACCESSIBILITY */
+/* ====================================== */
+
+.audio-toggle:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* Reducir animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  .audio-toggle,
+  .audio-toggle::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,85 +1,97 @@
-import { useState } from "react";
-import { getMoodFromText } from "./services/aiService";
+import { useState, useEffect } from "react";
+import Layout from "./components/Layout/Layout";
 import MoodInput from "./components/MoodInput/MoodInput";
 import MoodResult from "./components/MoodResult/MoodResult";
-import Layout from "./components/Layout/Layout";
-import { useTheme } from "./theme/ThemeContext.jsx";
-import { EmotionalAudioProvider } from "./audio/EmotionalAudioProvider.jsx";
-import AudioToggleButton from "./components/AudioToggleButton/AudioToggleButton.jsx";
+import MoodParticles from "./components/MoodParticles/MoodParticles";
+import AnimatedBackground from "./components/AnimatedBackground/AnimatedBackground";
+import AudioToggleButton from "./components/AudioToggleButton/AudioToggleButton";
+import { EmotionalAudioProvider } from "./audio/EmotionalAudioProvider";
+import "./App.css";
 
 function App() {
-  const [currentMood, setCurrentMood] = useState(null);
+  const [mood, setMood] = useState(null);
   const [variant, setVariant] = useState(null);
   const [reason, setReason] = useState(null);
   const [message, setMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { setMoodFromApi } = useTheme();
+  const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(text) {
+  // Actualizar tema según mood
+  useEffect(() => {
+    if (mood) {
+      document.documentElement.setAttribute("data-theme", mood);
+    } else {
+      document.documentElement.setAttribute("data-theme", "neutral");
+    }
+  }, [mood]);
+
+  const handleMoodSubmit = async (text) => {
     setLoading(true);
     setError(null);
-    setCurrentMood(null);
-    setVariant(null);
-    setReason(null);
-    setMessage(null);
 
     try {
-      const result = await getMoodFromText(text);
-      console.log("[App] Result from API, state to render:", result);
+      // Aquí va tu llamada a la API de análisis de mood
+      // Reemplazá esto con tu función real
+      const response = await fetch("/api/moodAI", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text }),
+      });
 
-      setCurrentMood(result.mood ?? null);
-      setVariant(result.variant ?? null);
-      setReason(result.reason ?? null);
-      setMessage(result.message ?? null);
-      setError(result.error ?? null);
-
-      // Actualizar theme solo si la IA respondió sin error
-      if (!result.error && result.mood) {
-        setMoodFromApi(result.mood);
-      } else if (result.error) {
-        setMoodFromApi("neutral");
+      if (!response.ok) {
+        throw new Error("Error al analizar el estado");
       }
+
+      const result = await response.json();
+      
+      setMood(result.mood);
+      setVariant(result.variant);
+      setReason(result.reason);
+      setMessage(result.message);
     } catch (err) {
-      console.error("[App] handleSubmit error:", err);
-      setError("No se pudo interpretar el estado de ánimo 😕");
-      setMoodFromApi("neutral");
+      setError("Error al analizar el estado. Intenta de nuevo.");
+      console.error(err);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
-    <Layout>
-      <EmotionalAudioProvider mood={currentMood}>
+    <EmotionalAudioProvider normalizedMood={mood}>
+      {/* Background animado */}
+      <AnimatedBackground mood={mood} />
+      
+      {/* Particles por mood */}
+      {mood && <MoodParticles mood={mood} />}
+
+      {/* Layout principal */}
+      <Layout>
+        <MoodInput onSubmit={handleMoodSubmit} loading={loading} />
         
-        <div className="left-panel">
-          <MoodInput onSubmit={handleSubmit} />
-  
-          {loading && (
-            <div className="loading-indicator">
-              <span className="loading-dot" />
-              <p>Estamos leyendo tu mensaje con cuidado…</p>
-            </div>
-          )}
-  
-          <MoodResult
-            mood={currentMood}
-            variant={variant}
-            reason={reason}
-            message={message}
-            error={error}
-          />
-        </div>
-  
-        <div className="right-panel">
-          <AudioToggleButton />
-        </div>
-  
-      </EmotionalAudioProvider>
-    </Layout>
+        {loading && (
+          <div className="loading-indicator">
+            <span className="loading-dot" />
+            <span className="loading-dot" />
+            <span className="loading-dot" />
+            <span>Analizando tu estado...</span>
+          </div>
+        )}
+
+        <MoodResult
+          mood={mood}
+          variant={variant}
+          reason={reason}
+          message={message}
+          error={error}
+        />
+      </Layout>
+
+      {/* Botón de audio toggle */}
+      <AudioToggleButton />
+    </EmotionalAudioProvider>
   );
-  
 }
 
 export default App;

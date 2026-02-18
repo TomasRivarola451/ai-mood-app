@@ -1,3 +1,4 @@
+/* ---------------- Mood Result ---------------- */
 import { useEffect, useMemo, useState } from "react";
 import { moodSongs } from "../../data/moodSongs";
 import { normalizeMood } from "../../services/moodAI";
@@ -29,10 +30,11 @@ function MoodResult({ mood, variant, reason, message, error }) {
     }
   }, [hasApiMood, normalizedMood]);
 
+  // CAMBIO PRINCIPAL: 7 → 6 canciones
   const songs = useMemo(
     () =>
       moodData && Array.isArray(moodData.songs)
-        ? getRandomSongs(moodData.songs, 7)
+        ? getRandomSongs(moodData.songs, 6) // ← CAMBIADO DE 7 A 6
         : [],
     [moodData, seed]
   );
@@ -74,7 +76,7 @@ function MoodResult({ mood, variant, reason, message, error }) {
             <p className="mood-description">{moodData.description}</p>
           )}
           {moodData.quote && (
-            <p className="mood-quote">“{moodData.quote}”</p>
+            <p className="mood-quote">"{moodData.quote}"</p>
           )}
         </div>
       ) : (
