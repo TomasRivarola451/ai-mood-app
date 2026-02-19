@@ -6,6 +6,7 @@ import MoodParticles from "./components/MoodParticles/MoodParticles";
 import AnimatedBackground from "./components/AnimatedBackground/AnimatedBackground";
 import AudioToggleButton from "./components/AudioToggleButton/AudioToggleButton";
 import { EmotionalAudioProvider } from "./audio/EmotionalAudioProvider";
+import { getMoodFromText } from "./services/aiService"; // ← IMPORTAR
 import "./App.css";
 
 function App() {
@@ -30,26 +31,17 @@ function App() {
     setError(null);
 
     try {
-      // Aquí va tu llamada a la API de análisis de mood
-      // Reemplazá esto con tu función real
-      const response = await fetch("/api/moodAI", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ text }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al analizar el estado");
-      }
-
-      const result = await response.json();
+      // Usar la función existente de aiService
+      const result = await getMoodFromText(text);
       
-      setMood(result.mood);
-      setVariant(result.variant);
-      setReason(result.reason);
-      setMessage(result.message);
+      if (result.error) {
+        setError(result.error);
+      } else {
+        setMood(result.mood);
+        setVariant(result.variant);
+        setReason(result.reason);
+        setMessage(result.message);
+      }
     } catch (err) {
       setError("Error al analizar el estado. Intenta de nuevo.");
       console.error(err);
