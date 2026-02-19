@@ -1,13 +1,18 @@
+/* ====================================== */
+/* LAYOUT PRINCIPAL - CON SCROLL FUNCIONAL */
+/* ====================================== */
+
 .app-layout {
-  height: 100vh;
+  min-height: 100vh; /* ← CAMBIO: min-height en vez de height */
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* ← CAMBIO: flex-start para permitir scroll */
   background: var(--bg-gradient);
-  padding: 20px;
+  padding: 40px 20px; /* ← CAMBIO: más padding vertical */
   position: relative;
-  overflow: hidden; 
+  overflow-y: auto; /* ← CAMBIO: permitir scroll vertical */
+  overflow-x: hidden;
 }
 
 /* Capa atmosférica animada de fondo */
@@ -61,23 +66,23 @@
 .app-layout-inner {
   width: 100%;
   max-width: 1400px;
-  height: calc(100% - 40px); 
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px; /* ← CAMBIO: más gap */
   position: relative;
   z-index: 2;
+  padding-bottom: 40px; /* ← NUEVO: respiro abajo */
 }
 
 /* Responsive: ajustar padding en mobile */
 @media (max-width: 768px) {
   .app-layout {
-    padding: 16px;
+    padding: 24px 16px;
   }
   
   .app-layout-inner {
-    height: calc(100% - 32px);
-    gap: 16px;
+    gap: 24px;
+    padding-bottom: 24px;
   }
 }
 

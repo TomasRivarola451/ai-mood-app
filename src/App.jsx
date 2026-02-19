@@ -6,7 +6,7 @@ import MoodParticles from "./components/MoodParticles/MoodParticles";
 import AnimatedBackground from "./components/AnimatedBackground/AnimatedBackground";
 import AudioToggleButton from "./components/AudioToggleButton/AudioToggleButton";
 import { EmotionalAudioProvider } from "./audio/EmotionalAudioProvider";
-import { getMoodFromText } from "./services/aiService"; // ← IMPORTAR
+import { getMoodFromText } from "./services/aiService";
 import "./App.css";
 
 function App() {
@@ -31,7 +31,6 @@ function App() {
     setError(null);
 
     try {
-      // Usar la función existente de aiService
       const result = await getMoodFromText(text);
       
       if (result.error) {
@@ -51,7 +50,7 @@ function App() {
   };
 
   return (
-    <EmotionalAudioProvider normalizedMood={mood}>
+    <EmotionalAudioProvider mood={mood}> {/* ← CAMBIO: mood en vez de normalizedMood */}
       {/* Background animado */}
       <AnimatedBackground mood={mood} />
       
