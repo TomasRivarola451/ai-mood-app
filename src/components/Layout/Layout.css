@@ -1,18 +1,17 @@
 /* ====================================== */
-/* LAYOUT PRINCIPAL - CON SCROLL FUNCIONAL */
+/* LAYOUT PRINCIPAL - 100VH SIN SCROLL */
 /* ====================================== */
 
 .app-layout {
-  min-height: 100vh; /* ← CAMBIO: min-height en vez de height */
+  height: 100vh; /* ← CAMBIO: height fijo para 100vh */
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* ← CAMBIO: flex-start para permitir scroll */
+  align-items: center; /* ← CAMBIO: centrado */
   background: var(--bg-gradient);
-  padding: 40px 20px; /* ← CAMBIO: más padding vertical */
+  padding: 20px; /* ← REDUCIDO: era 40px */
   position: relative;
-  overflow-y: auto; /* ← CAMBIO: permitir scroll vertical */
-  overflow-x: hidden;
+  overflow: hidden; /* ← CAMBIO: sin scroll */
 }
 
 /* Capa atmosférica animada de fondo */
@@ -66,23 +65,23 @@
 .app-layout-inner {
   width: 100%;
   max-width: 1400px;
+  height: calc(100% - 40px); /* ← NUEVO: altura fija */
   display: flex;
   flex-direction: column;
-  gap: 32px; /* ← CAMBIO: más gap */
+  gap: 20px; /* ← REDUCIDO: era 32px */
   position: relative;
   z-index: 2;
-  padding-bottom: 40px; /* ← NUEVO: respiro abajo */
 }
 
 /* Responsive: ajustar padding en mobile */
 @media (max-width: 768px) {
   .app-layout {
-    padding: 24px 16px;
+    padding: 16px;
   }
   
   .app-layout-inner {
-    gap: 24px;
-    padding-bottom: 24px;
+    height: calc(100% - 32px);
+    gap: 16px;
   }
 }
 

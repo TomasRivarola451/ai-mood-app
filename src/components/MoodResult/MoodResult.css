@@ -1,9 +1,13 @@
+/* ====================================== */
+/* MOOD RESULT - VERSIÓN COMPACTA 100VH */
+/* ====================================== */
+
 .mood-result {
-  flex: 1; 
+  flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 28px 32px 32px;
-  border-radius: 20px;
+  padding: 20px 24px; /* ← REDUCIDO: era 28px 32px */
+  border-radius: 16px;
   background: rgba(15, 23, 42, 0.75);
   border: 1px solid rgba(148, 163, 184, 0.3);
   box-shadow: 
@@ -11,6 +15,8 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(24px);
   animation: mood-result-appear 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+  max-height: 100%; /* ← NUEVO: limitar altura */
+  overflow: hidden;
 }
 
 @keyframes mood-result-appear {
@@ -25,13 +31,14 @@
 }
 
 /* ====================================== */
-/* HEADER DEL MOOD */
+/* HEADER DEL MOOD - COMPACTO */
 /* ====================================== */
 
 .mood-header {
-  margin-bottom: 20px;
-  padding-bottom: 16px;
+  margin-bottom: 12px; /* ← REDUCIDO: era 20px */
+  padding-bottom: 12px; /* ← REDUCIDO: era 16px */
   border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  flex-shrink: 0; /* ← NUEVO: no comprimir header */
 }
 
 .mood-heading {
@@ -39,12 +46,12 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 6px; /* ← REDUCIDO: era 8px */
 }
 
 .mood-heading-text h2 {
-  margin: 0 0 6px;
-  font-size: 1.8rem;
+  margin: 0 0 4px; /* ← REDUCIDO: era 6px */
+  font-size: 1.4rem; /* ← REDUCIDO: era 1.8rem */
   font-weight: 700;
   letter-spacing: -0.02em;
   background: linear-gradient(
@@ -60,37 +67,37 @@
 .mood-main-line {
   margin: 0 0 4px;
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: 0.9rem; /* ← REDUCIDO: era 1.05rem */
   color: var(--secondary-color);
 }
 
 .mood-description {
-  margin: 8px 0;
-  font-size: 0.95rem;
+  margin: 4px 0; /* ← REDUCIDO: era 8px */
+  font-size: 0.85rem; /* ← REDUCIDO: era 0.95rem */
   opacity: 0.9;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 .mood-message {
-  margin: 8px 0;
-  font-size: 1.1rem;
+  margin: 4px 0; /* ← REDUCIDO: era 8px */
+  font-size: 0.95rem; /* ← REDUCIDO: era 1.1rem */
   font-weight: 600;
   color: var(--primary-color);
 }
 
 .mood-reason {
-  margin: 0 0 8px;
-  font-size: 0.88rem;
+  margin: 0 0 6px; /* ← REDUCIDO: era 8px */
+  font-size: 0.8rem; /* ← REDUCIDO: era 0.88rem */
   opacity: 0.8;
 }
 
 .mood-quote {
-  margin: 8px 0 0;
-  font-size: 0.92rem;
+  margin: 4px 0 0; /* ← REDUCIDO: era 8px */
+  font-size: 0.82rem; /* ← REDUCIDO: era 0.92rem */
   font-style: italic;
   opacity: 0.85;
-  padding-left: 14px;
-  border-left: 3px solid var(--accent-color);
+  padding-left: 12px;
+  border-left: 2px solid var(--accent-color);
 }
 
 /* ====================================== */
@@ -100,12 +107,12 @@
 .mood-result-content {
   flex: 1;
   display: grid;
-  gap: 32px;
+  gap: 20px; /* ← REDUCIDO: era 32px */
   grid-template-columns: 1fr;
-  min-height: 0; 
+  min-height: 0;
+  overflow: hidden;
 }
 
-/* Desktop: layout horizontal */
 @media (min-width: 900px) {
   .mood-result-content {
     grid-template-columns: 1.6fr 1fr;
@@ -117,6 +124,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .mood-result-empty {
@@ -125,25 +133,27 @@
 }
 
 /* ====================================== */
-/* LISTA DE CANCIONES - GRID 2x3 */
+/* LISTA DE CANCIONES - GRID 2x3 COMPACTO */
 /* ====================================== */
 
 .song-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 16px;
+  margin: 0 0 12px; /* ← REDUCIDO: era 16px */
   display: grid;
-  gap: 12px;
+  gap: 8px; /* ← REDUCIDO: era 12px */
   grid-template-columns: repeat(2, 1fr);
   flex: 1;
+  overflow-y: auto; /* ← NUEVO: scroll si es necesario */
+  max-height: 100%;
 }
 
 .song-card {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-radius: 14px;
+  gap: 10px; /* ← REDUCIDO: era 14px */
+  padding: 10px 12px; /* ← REDUCIDO: era 14px 16px */
+  border-radius: 12px;
   background: rgba(30, 41, 59, 0.65);
   border: 1px solid rgba(148, 163, 184, 0.2);
   box-shadow: 
@@ -155,7 +165,6 @@
   animation: song-card-appear 0.4s cubic-bezier(0.16, 0.84, 0.44, 1) forwards;
 }
 
-/* Animación stagger para cada card */
 .song-card:nth-child(1) { animation-delay: 0.05s; }
 .song-card:nth-child(2) { animation-delay: 0.1s; }
 .song-card:nth-child(3) { animation-delay: 0.15s; }
@@ -175,7 +184,7 @@
 }
 
 .song-card:hover {
-  transform: translateY(-3px) scale(1.02);
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 
     0 10px 30px rgba(0, 0, 0, 0.35),
     0 0 20px rgba(var(--accent-rgb, 56, 189, 248), 0.2),
@@ -186,9 +195,9 @@
 
 .song-card-cover {
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
-  border-radius: 10px;
+  width: 44px; /* ← REDUCIDO: era 56px */
+  height: 44px; /* ← REDUCIDO: era 56px */
+  border-radius: 8px;
   overflow: hidden;
   background: rgba(15, 23, 42, 0.8);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -220,12 +229,12 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   flex: 1;
 }
 
 .song-card-title {
-  font-size: 0.96rem;
+  font-size: 0.85rem; /* ← REDUCIDO: era 0.96rem */
   font-weight: 700;
   color: var(--primary-color);
   display: block;
@@ -236,14 +245,14 @@
 }
 
 .song-card-artist {
-  font-size: 0.88rem;
+  font-size: 0.78rem; /* ← REDUCIDO: era 0.88rem */
   color: var(--secondary-color);
   opacity: 0.95;
   font-weight: 500;
 }
 
 .song-card-album {
-  font-size: 0.8rem;
+  font-size: 0.72rem; /* ← REDUCIDO: era 0.8rem */
   color: var(--secondary-color);
   opacity: 0.7;
 }
@@ -253,12 +262,12 @@
 /* ====================================== */
 
 .another-recommendation {
-  padding: 11px 24px;
+  padding: 8px 18px; /* ← REDUCIDO: era 11px 24px */
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   background: var(--accent-color);
   color: #111;
-  font-size: 0.95rem;
+  font-size: 0.85rem; /* ← REDUCIDO: era 0.95rem */
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 0.84, 0.44, 1);
@@ -266,6 +275,7 @@
     0 4px 14px rgba(var(--accent-rgb, 56, 189, 248), 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   align-self: flex-start;
+  flex-shrink: 0;
 }
 
 .another-recommendation:hover {
@@ -283,14 +293,15 @@
 }
 
 /* ====================================== */
-/* SECCIÓN ÁLBUMES */
+/* SECCIÓN ÁLBUMES - COMPACTA */
 /* ====================================== */
 
 .mood-result-albums {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
+  padding-top: 16px; /* ← REDUCIDO: era 20px */
   border-top: 1px solid rgba(148, 163, 184, 0.15);
+  min-height: 0;
 }
 
 @media (min-width: 900px) {
@@ -298,39 +309,41 @@
     border-top: none;
     border-left: 1px solid rgba(148, 163, 184, 0.15);
     padding-top: 0;
-    padding-left: 32px;
+    padding-left: 20px; /* ← REDUCIDO: era 32px */
   }
 }
 
 .albums-section-title {
-  margin: 0 0 24px;
-  font-size: 1.15rem;
+  margin: 0 0 16px; /* ← REDUCIDO: era 24px */
+  font-size: 1rem; /* ← REDUCIDO: era 1.15rem */
   font-weight: 700;
   color: var(--primary-color);
   letter-spacing: -0.01em;
+  flex-shrink: 0;
 }
 
 /* ====================================== */
-/* ALBUMS STACK */
+/* ALBUMS STACK - COMPACTO */
 /* ====================================== */
 
 .albums-stack {
   position: relative;
-  height: 350px;
+  height: 240px; /* ← REDUCIDO: era 350px */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   margin: 0 auto;
   width: 100%;
-  max-width: 600px;
+  max-width: 500px; /* ← REDUCIDO: era 600px */
+  flex-shrink: 0;
 }
 
 .album-card {
   position: absolute;
-  width: 170px;
-  height: 230px;
-  border-radius: 16px;
+  width: 140px; /* ← REDUCIDO: era 170px */
+  height: 190px; /* ← REDUCIDO: era 230px */
+  border-radius: 14px;
   overflow: hidden;
   transition:
     transform 0.55s cubic-bezier(0.16, 0.84, 0.44, 1),
@@ -364,7 +377,7 @@
 /* ====================================== */
 
 .album-0 {
-  transform: rotate(-14deg) translateX(-45px);
+  transform: rotate(-14deg) translateX(-35px); /* ← AJUSTADO */
   z-index: 1;
 }
 
@@ -374,7 +387,7 @@
 }
 
 .album-2 {
-  transform: rotate(14deg) translateX(45px);
+  transform: rotate(14deg) translateX(35px); /* ← AJUSTADO */
   z-index: 2;
 }
 
@@ -383,7 +396,7 @@
 /* ====================================== */
 
 .albums-stack:hover .album-0 {
-  transform: translateX(-195px) rotate(-2deg); /* Aumentado de -120px */
+  transform: translateX(-160px) rotate(-2deg); /* ← AJUSTADO: era -195px */
   z-index: 2;
   box-shadow: 
     0 25px 55px rgba(0, 0, 0, 0.7),
@@ -399,7 +412,7 @@
 }
 
 .albums-stack:hover .album-2 {
-  transform: translateX(195px) rotate(2deg); /* Aumentado de 120px */
+  transform: translateX(160px) rotate(2deg); /* ← AJUSTADO: era 195px */
   z-index: 2;
   box-shadow: 
     0 25px 55px rgba(0, 0, 0, 0.7),
@@ -425,7 +438,7 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 12px 14px;
+  padding: 10px 12px; /* ← REDUCIDO: era 12px 14px */
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.85) 0%,
@@ -448,16 +461,16 @@
 }
 
 .album-overlay .album-card-title {
-  font-size: 0.9rem;
+  font-size: 0.8rem; /* ← REDUCIDO: era 0.9rem */
   font-weight: 700;
   color: #fff;
   line-height: 1.3;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
   letter-spacing: -0.01em;
 }
 
 .album-overlay .album-card-artist {
-  font-size: 0.78rem;
+  font-size: 0.7rem; /* ← REDUCIDO: era 0.78rem */
   color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
 }
@@ -469,8 +482,8 @@
 .error {
   color: #fecaca;
   font-weight: 600;
-  padding: 16px 20px;
-  border-radius: 12px;
+  padding: 14px 18px;
+  border-radius: 10px;
   background: rgba(239, 68, 68, 0.12);
   border: 1px solid rgba(239, 68, 68, 0.35);
 }
@@ -485,20 +498,21 @@
   }
 
   .albums-stack {
-    max-width: 400px;
+    max-width: 350px;
+    height: 220px;
   }
 
   .album-card {
-    width: 150px;
-    height: 200px;
+    width: 120px;
+    height: 170px;
   }
 
   .albums-stack:hover .album-0 {
-    transform: translateX(-165px) rotate(-2deg);
+    transform: translateX(-135px) rotate(-2deg);
   }
 
   .albums-stack:hover .album-2 {
-    transform: translateX(165px) rotate(2deg);
+    transform: translateX(135px) rotate(2deg);
   }
 }
 
@@ -508,36 +522,36 @@
 
 @media (max-width: 640px) {
   .mood-result {
-    padding: 24px 20px;
+    padding: 18px 16px;
   }
 
   .mood-heading-text h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .albums-stack {
-    height: 260px;
-    max-width: 320px;
+    height: 200px;
+    max-width: 280px;
   }
 
   .album-card {
-    width: 130px;
-    height: 180px;
+    width: 110px;
+    height: 150px;
   }
 
   .album-0 {
-    transform: rotate(-12deg) translateX(-35px);
+    transform: rotate(-12deg) translateX(-30px);
   }
 
   .album-2 {
-    transform: rotate(12deg) translateX(35px);
+    transform: rotate(12deg) translateX(30px);
   }
 
   .albums-stack:hover .album-0 {
-    transform: translateX(-140px) rotate(-2deg);
+    transform: translateX(-120px) rotate(-2deg);
   }
 
   .albums-stack:hover .album-2 {
-    transform: translateX(140px) rotate(2deg);
+    transform: translateX(120px) rotate(2deg);
   }
 }
